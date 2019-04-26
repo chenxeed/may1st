@@ -1,6 +1,7 @@
 import React from 'react'
 import LayoutMain from '../layouts/Main'
 import Envelope from '../components/envelope'
+import Invitation from '../components/invitation'
 
 class Index extends React.Component {
 
@@ -11,9 +12,10 @@ class Index extends React.Component {
   render () {
     return (
       <LayoutMain>
-        <Envelope>
-          Please come to my party yeah
-        </Envelope>
+        <Envelope
+          letter={<Invitation/>}
+          recipient="To Ronaldo and Familia"
+          />
       </LayoutMain>
     )
   }

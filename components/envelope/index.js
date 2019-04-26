@@ -6,42 +6,50 @@ class Envelope extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      openEnvelope: false,
-      showLetter: false
+      openEnvelope: false
     }
   }
 
-  openLetter = () => {
+  flipCard (e) {
+    if (!e.currentTarget.classList.contains('hover')) {
+      e.currentTarget.classList.toggle('hover')
+    }
+  }
+
+  openLetter = e => {
+    e.stopPropagation()
     this.setState({
       ...this.state,
       openEnvelope: true
     })
-    setTimeout(() => {
-      this.setState({
-        ...this.state,
-        showLetter: true
-      })
-    }, 1000)
   }
 
-  get flipClass () {
-    return `flip ${this.state.openEnvelope ? 'open' : ''}`
+  get envelopeClass () {
+    return `envelope ${this.state.openEnvelope ? 'open' : ''}`
   }
-
-  get letterClass () {
-    return `letter ${this.state.showLetter ? 'open' : ''}`
-  }
-
 
   render () {
     return (
-      <div className="invitation">
-        <div className="envelope" onClick={this.openLetter}>
-          <div className={this.letterClass}>
-            {this.props.children}
+      <div className="flip-container" onClick={ this.flipCard }>
+        <div className="flipper">
+          <div className="front">
+            <div className={this.envelopeClass}>
+              <div className="cover-front">
+                <div className="recipient h4 text-white">
+                  {this.props.recipient}
+                </div>
+              </div>
+            </div>
           </div>
-          <div className={this.flipClass}></div>
-          <div className="cover"></div>
+          <div className="back">
+            <div className={this.envelopeClass}>
+              <div className="letter">
+                {this.props.letter}
+              </div>
+              <div className="flip" onClick={this.openLetter}></div>
+              <div className="cover-back"></div>
+            </div>
+          </div>
         </div>
       </div>
     )

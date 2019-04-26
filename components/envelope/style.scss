@@ -1,48 +1,141 @@
-.envelope {
+/* entire container, keeps perspective */
+.flip-container {
   position: relative;
   margin: auto;
-  width: 250px;
-  height: 200px;
-  border: 1px solid black;
+  width: 80%;
+  height: 80%;
+  perspective: 1000px;
+  
+  &, .flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+	/* flip the pane when hovered */
+	&.hover .flipper {
+		transform: rotateY(180deg);
+  }
+
+  .front, .back {
+    width: 100%;
+    height: 100%;
+    /* hide back of pane during swap */
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* front pane, placed above back */
+  .front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+  }
+
+  /* back, initially hidden pane */
+  .back {
+    transform: rotateY(180deg);
+  }
+}
+
+.envelope {
+  position: relative;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transition: top 0.5s;
+  box-shadow: 5px 5px 10px #626262;
 
   .flip {
     position: absolute;
+    top: 0;
+    left: 0;
     clip-path: polygon(0 0, 0px 0px, 100% 0px, 50% 100%);
-    height: 50%;
+    height: 30%;
     width: 100%;
     background: linear-gradient(to top right, #86F7CC, #67D7F5);
     transition: transform 0.5s;
     transform-origin: center top;
     z-index: 2;
-
-    &.open {
-      transform: rotateX(180deg);
-    }
+    cursor: pointer;
+    
   }
 
-  .cover {
+  &.open .flip {
+    @keyframes open-flip {
+      20% {
+        transform: rotateX(180deg);
+      }
+      100% {
+        transform: rotateX(0deg);
+      }
+    }
+    animation: open-flip 2s forwards;
+  }
+
+  .cover-front {
     position: absolute;
-    clip-path: polygon(0 0, 0px 0px, 0px 100%, 100% 100%, 100% 0, 50% 50%);
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
     background: linear-gradient(to top right, #5a6561, #67D7F5);
-    z-index: 4;
+    z-index: 3;
+
+    .recipient {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+    }
+  }
+
+  .cover-back {
+    position: absolute;
+    clip-path: polygon(0 0, 0px 0px, 0px 100%, 100% 100%, 100% 0, 50% 30%);
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to top right, #5a6561, #67D7F5);
+    z-index: 3;
   }
 
   .letter {
     position: absolute;
-    top: 0px;
+    top: 10%;
     left: 5%;
     width: 90%;
     height: 90%;
-    border: 1px solid black;
     background: white;
+    border: 1px solid black;
     z-index: 1;
-    transition: top 1s;
+    transition: all 2s;
+  }
 
-    &.open {
-      top: -500px;
-      z-index: 3;
+  &.open .letter {
+    @keyframes take-out-letter {
+      30% {
+        top: 0;
+      }
+      50% {
+        top: -150%;
+      }
+      100% {
+        top: 0;
+        z-index: 4;
+      }
     }
+    animation: take-out-letter 2s forwards;
+    width: 100%;
+    height: 100%;
+    left: 0;
   }
 }

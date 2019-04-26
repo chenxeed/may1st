@@ -1,19 +1,9 @@
 html, body, #__next {
   height: 100%;
+  font-family: 'Amatic SC', cursive;
 }
 
 .wrapper-main {
   height: 100%;
   display: flex;
-
-  .invitation {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 300px;
-    height: 300px;
-    margin: auto;
-    border: 1px solid black;
-  }
 }
