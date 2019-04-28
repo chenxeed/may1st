@@ -1,9 +1,11 @@
+$animation-duration: 3s;
+
 /* entire container, keeps perspective */
 .flip-container {
   position: relative;
   margin: auto;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   perspective: 1000px;
   
   &, .flipper {
@@ -50,11 +52,16 @@
   display: flex;
   margin: auto;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transition: top 0.5s;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  transition: all 0.5s;
   box-shadow: 5px 5px 10px #626262;
+  overflow: hidden;
+
+  &.open {
+    animation: zoom-letter $animation-duration forwards;
+  }
 
   .flip {
     position: absolute;
@@ -72,15 +79,7 @@
   }
 
   &.open .flip {
-    @keyframes open-flip {
-      20% {
-        transform: rotateX(180deg);
-      }
-      100% {
-        transform: rotateX(0deg);
-      }
-    }
-    animation: open-flip 2s forwards;
+    animation: open-flip $animation-duration forwards;
   }
 
   .cover-front {
@@ -92,10 +91,26 @@
     background: linear-gradient(to top right, #5a6561, #67D7F5);
     z-index: 3;
 
+    .image {
+      text-align: center;
+      height: 100%;
+
+      img {
+        max-height: 90%;
+        max-width: 90%;
+        position: relative;
+        top: 5%;
+      }
+    }
+
     .recipient {
       position: absolute;
-      bottom: 15px;
-      right: 15px;
+      bottom: 30px;
+      right: 50px;
+
+      .badge {
+        box-shadow: 0 0 10px black;
+      }
     }
   }
 
@@ -114,28 +129,67 @@
     left: 5%;
     width: 90%;
     height: 90%;
-    background: white;
-    border: 1px solid black;
+    background: url('/static/paper_fibers.png');
+    background-size: cover;
     z-index: 1;
     transition: all 2s;
   }
 
   &.open .letter {
-    @keyframes take-out-letter {
-      30% {
-        top: 0;
-      }
-      50% {
-        top: -150%;
-      }
-      100% {
-        top: 0;
-        z-index: 4;
-      }
-    }
-    animation: take-out-letter 2s forwards;
+    animation: take-out-letter $animation-duration forwards;
     width: 100%;
     height: 100%;
     left: 0;
+  }
+}
+
+/* Animation List 
+  Define the timing based on each other animation
+*/
+@keyframes zoom-letter {
+  50% {
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    overflow: auto;    
+  }
+  80% {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    overflow: auto;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    overflow: auto;
+  }
+}
+
+@keyframes open-flip {
+  20% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes take-out-letter {
+  30% {
+    top: 0;
+  }
+  50% {
+    top: -200%;
+  }
+  80% {
+    top: 0;
+    z-index: 4;
+  }
+  100% {
+    top: 0;
+    z-index: 4;
   }
 }

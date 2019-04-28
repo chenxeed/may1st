@@ -15,6 +15,7 @@ class Index extends React.Component {
         <Envelope
           letter={<Invitation/>}
           recipient="To Ronaldo and Familia"
+          frontImage="/static/tsum2.png"
           />
       </LayoutMain>
     )
