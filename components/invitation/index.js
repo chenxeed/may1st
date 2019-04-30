@@ -23,7 +23,7 @@ class Invitation extends React.Component {
   }
 
   render () {
-    return <div className="container-fluid invitation-wrapper">
+    return <div className="container-fluid invitation-wrapper pt-3 pb-3">
       <div className="row intro">
         <div className="col text-center">
           <h4>You are invited</h4>
@@ -53,7 +53,7 @@ class Invitation extends React.Component {
         </div>
       </div>
       <div className="row text-center">
-        <h2 className="col">Her Gallery</h2>
+        <h2 className="col">Gallery</h2>
       </div>
       <div className="row">
         <div className="col w-50 mb-5 photos" onClick={() => this.togglePhotoPreview(true) }>
@@ -100,6 +100,26 @@ class Invitation extends React.Component {
         </div>
       </div>
       }
+      <div className="row">
+        <div className="col">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">RSVP</h5>
+              <p class="card-text">Would you be able to attend my birthday party?</p>
+              <a href="#" class="btn btn-success">Yes</a>
+              {' '}
+              <a href="#" class="btn btn-secondary">No</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row mt-3">
+        <div className="col text-center h4">
+          <a href="https://chenxeed.com" class="badge badge-info">
+            Made by ChenXeed
+          </a>
+        </div>
+      </div>
     </div>
   }
 }
