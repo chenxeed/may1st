@@ -147,24 +147,28 @@ $animation-duration: 3s;
   Define the timing based on each other animation
 */
 @keyframes zoom-letter {
+  30% {
+    top: 25%;
+    overflow: visible;
+  }
   50% {
     width: 80%;
     height: 80%;
-    top: 10%;
-    overflow: auto;    
+    top: 25%;
+    overflow: visible;
   }
   80% {
     width: 100%;
     height: 100%;
     top: 0;
-    overflow: auto;
+    overflow: visible;
   }
 
   100% {
     width: 100%;
     height: 100%;
     top: 0;
-    overflow: auto;
+    overflow: visible;
   }
 }
 

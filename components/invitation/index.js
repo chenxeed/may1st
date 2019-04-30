@@ -29,7 +29,7 @@ class Invitation extends React.Component {
           <h4>You are invited</h4>
           <h1>Maydelyn is Turning</h1>
           <div>
-            <img src="/static/turn-to-1.png" />
+            <img className="w-100" src="/static/turn-to-1.png" />
           </div>
         </div>
       </div>
@@ -52,6 +52,9 @@ class Invitation extends React.Component {
           </p>
         </div>
       </div>
+      <div className="row text-center">
+        <h2 className="col">Her Gallery</h2>
+      </div>
       <div className="row">
         <div className="col w-50 mb-5 photos" onClick={() => this.togglePhotoPreview(true) }>
           { this.photos.map((name, idx) => {
@@ -71,10 +74,11 @@ class Invitation extends React.Component {
         <div className="container preview-container">
           <ReactSwipe
             className="carousel"
-            swipeOptions={{ continuous: false }}
+            swipeOptions={{ continuous: true }}
             ref={el => (this.reactSwipeEl = el)}>
             { this.photos.map((name, idx) => {
               return <img
+                className="border border-white"
                 key={name}
                 src={`/static/${name}`}/>
             })}
