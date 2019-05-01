@@ -5,6 +5,7 @@ import './style.scss'
 class Invitation extends React.Component {
 
   photos = ['may1.jpeg', 'may2.jpeg', 'may3.jpeg', 'may4.jpeg']
+  tsum2s = ['eeyore', 'daisy', 'tigger', 'stitch', 'cinderella', 'mickey']
   reactSwipeEl = null
 
   constructor(props) {
@@ -22,6 +23,21 @@ class Invitation extends React.Component {
     })
   }
 
+
+
+  randomAnimation () {
+    const animation = [
+      'bounce',
+      'rubberBand',
+      'shake',
+      'wobble',
+      'tada',
+      'swing'
+    ]
+    const randomIndex = Math.round(Math.random()*animation.length)
+    return animation[randomIndex]
+  }
+
   render () {
     return <div className="container-fluid invitation-wrapper pt-3 pb-3">
       <div className="container">
@@ -31,6 +47,13 @@ class Invitation extends React.Component {
             <h1>Maydelyn is Turning</h1>
             <div>
               <img className="w-100" src="/static/turn-to-1.png" />
+              <div className="tsum2 row">
+              { this.tsum2s.map((tsum2) => {
+                return <div className={`col h-100 animated infinite ${this.randomAnimation()}`}>
+                  <img src={`/static/tsum2-${tsum2}.png`} />
+                </div>
+              })}
+              </div>
             </div>
           </div>
         </div>
