@@ -35,11 +35,11 @@ class Envelope extends React.Component {
           <div className="front">
             <div className={this.envelopeClass}>
               <div className="cover-front">
-                <div className="image">
-                  <img src={this.props.frontImage} />
-                </div>
-                <div className="recipient h3 text-white">
+                <div className="recipient h-100 h3 text-white m-auto">
                   <span className="badge badge-light">{this.props.recipient}</span>
+                </div>
+                <div className="image h-100 m-auto">
+                  <img src={this.props.frontImage} />
                 </div>
               </div>
             </div>

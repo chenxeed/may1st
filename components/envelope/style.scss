@@ -82,7 +82,9 @@ $animation-duration: 3s;
   }
 
   .cover-front {
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     top: 0;
     left: 0;
     height: 100%;
@@ -91,10 +93,16 @@ $animation-duration: 3s;
     background: linear-gradient(90deg, rgba(208,191,88,1) 0%, rgba(203,171,19,1) 35%, rgba(255,241,0,1) 100%);
     z-index: 3;
 
-    .image {
-      text-align: center;
-      height: 100%;
+    .recipient {
+      display: flex;
+      align-items: center;
 
+      .badge {
+        box-shadow: 0 0 10px black;
+      }
+    }
+
+    .image {
       img {
         max-height: 90%;
         max-width: 90%;
@@ -102,20 +110,10 @@ $animation-duration: 3s;
         top: 5%;
       }
     }
-
-    .recipient {
-      position: absolute;
-      top: 30px;
-      right: 50px;
-
-      .badge {
-        box-shadow: 0 0 10px black;
-      }
-    }
   }
 
   .cover-back {
-    position: absolute;
+    position: relative;
     clip-path: polygon(0 0, 0px 0px, 0px 100%, 100% 100%, 100% 0, 50% 30%);
     height: 100%;
     width: 100%;
