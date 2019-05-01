@@ -1,5 +1,7 @@
 .invitation-wrapper {
-  background-color: #ebbbae;
+  > .container {
+    background-color: #ebbbae;    
+  }
 
   .photos {
     position: relative;
@@ -55,11 +57,24 @@
       margin: auto;
       position: relative;
 
+      div.photo-wrapper {
+        img {
+          max-height: 100%;
+          max-width: 100%;
+        }
+      }
+
       .navigation {
         position: absolute;
         bottom: -60px;
         width: 100%;
-      }  
+      }
+
+      @media (min-width: 576px) {
+        .navigation {
+          bottom: 10px;
+        }
+      }
     }
 
   }

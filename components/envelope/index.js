@@ -47,7 +47,9 @@ class Envelope extends React.Component {
           <div className="back">
             <div className={this.envelopeClass}>
               <div className="letter">
-                {this.props.letter}
+                <div>
+                  {this.props.letter}
+                </div>
               </div>
               <div className="flip" onClick={this.openLetter}></div>
               <div className="cover-back"></div>

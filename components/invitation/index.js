@@ -24,100 +24,92 @@ class Invitation extends React.Component {
 
   render () {
     return <div className="container-fluid invitation-wrapper pt-3 pb-3">
-      <div className="row intro">
-        <div className="col text-center">
-          <h4>You are invited</h4>
-          <h1>Maydelyn is Turning</h1>
-          <div>
-            <img className="w-100" src="/static/turn-to-1.png" />
+      <div className="container">
+        <div className="row intro">
+          <div className="col-sm-4 m-auto text-center">
+            <h4>You are invited</h4>
+            <h1>Maydelyn is Turning</h1>
+            <div>
+              <img className="w-100" src="/static/turn-to-1.png" />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="row justify-content-md-center detail">
-        <div className="col-sm-4 ml-auto text-center">
-          <p className="lead">
-            <span className="h4 font-weight-bold">May</span>
-            <br/>
-            <span className="h2 font-weight-bold">26th</span>
-            <br/>
-            <span className="h4 font-weight-bold">3PM</span>
-          </p>
-          
+        <div className="row detail">
+          <div className="col-sm-4 ml-auto text-center">
+            <p className="lead">
+              <span className="h2 font-weight-bold">May 26th 3PM</span>
+            </p>
+            
+          </div>
+          <div className="col-sm-4 mr-auto text-center">
+            <p className="h2 font-weight-bold">
+              Bakmi GM Puri Mall, Jakarta
+            </p>
+          </div>
         </div>
-        <div className="col-sm-4 mr-auto text-center">
-          <p className="h3">
-            <img className="w-50" src="/static/bakmi-gm.png" />
-            <br/>
-            Bakmi GM Puri Mall, Jakarta
-          </p>
-        </div>
-      </div>
-      <div className="row text-center">
-        <h2 className="col">Gallery</h2>
-      </div>
-      <div className="row">
-        <div className="col w-50 mb-5 photos" onClick={() => this.togglePhotoPreview(true) }>
-          { this.photos.map((name, idx) => {
-            return <img
-              key={name}
-              src={`/static/${name}`}
-              style={{transform: `rotate(${((this.photos.length/2)*-10) + (idx*10)}deg)`}} />
-          })}
-        </div>
-      </div>
-      { this.state.showPhotoPreview &&
-      <div className="container-fluid photo-preview">
-        <button
-          type="button"
-          className="btn btn-dark close-button"
-          onClick={() => this.togglePhotoPreview(false)}>Close</button>
-        <div className="container preview-container">
-          <ReactSwipe
-            className="carousel"
-            swipeOptions={{ continuous: true }}
-            ref={el => (this.reactSwipeEl = el)}>
+        <div className="row justify-content-center">
+          <div className="col-sm-4 w-50 mb-5 photos" onClick={() => this.togglePhotoPreview(true) }>
             { this.photos.map((name, idx) => {
               return <img
-                className="border border-white"
                 key={name}
-                src={`/static/${name}`}/>
+                src={`/static/${name}`}
+                style={{transform: `rotate(${((this.photos.length/2)*-10) + (idx*10)}deg)`}} />
             })}
-          </ReactSwipe>
-          <div className="navigation text-center row">
-            <div className="col">
-              <button
-                type="button"
-                className="btn btn-info btn-lg btn-block"
-                onClick={() => this.reactSwipeEl.prev()}>Prev</button>
-            </div>
-            <div className="col">
-              <button
-                type="button"
-                className="btn btn-info btn-lg btn-block"
-                onClick={() => this.reactSwipeEl.next()}>Next</button>
+          </div>
+        </div>
+        { this.state.showPhotoPreview &&
+        <div className="container-fluid photo-preview">
+          <button
+            type="button"
+            className="btn btn-dark close-button"
+            onClick={() => this.togglePhotoPreview(false)}>Close</button>
+          <div className="container preview-container">
+            <ReactSwipe
+              className="carousel"
+              swipeOptions={{ continuous: true }}
+              ref={el => (this.reactSwipeEl = el)}>
+              { this.photos.map((name, idx) => {
+                return <div className="text-center photo-wrapper" key={name} >
+                    <img className="border border-white" src={`/static/${name}`}/>
+                  </div>
+              })}
+            </ReactSwipe>
+            <div className="navigation text-center row">
+              <div className="col">
+                <button
+                  type="button"
+                  className="btn btn-info btn-lg btn-block"
+                  onClick={() => this.reactSwipeEl.prev()}>Prev</button>
+              </div>
+              <div className="col">
+                <button
+                  type="button"
+                  className="btn btn-info btn-lg btn-block"
+                  onClick={() => this.reactSwipeEl.next()}>Next</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      }
-      <div className="row">
-        <div className="col">
-          <div class="card text-center">
-            <div class="card-body">
-              <h5 class="card-title">RSVP</h5>
-              <p class="card-text">Would you be able to attend my birthday party?</p>
-              <a href="#" class="btn btn-success">Yes</a>
-              {' '}
-              <a href="#" class="btn btn-secondary">No</a>
+        }
+        <div className="row">
+          <div className="col">
+            <div className="card text-center">
+              <div className="card-body">
+                <h5 className="card-title">RSVP</h5>
+                <p className="card-text">Would you be able to attend my birthday party?</p>
+                <a href="#" className="btn btn-success">Yes</a>
+                {' '}
+                <a href="#" className="btn btn-secondary">No</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="row mt-3">
-        <div className="col text-center h4">
-          <a href="https://chenxeed.com" class="badge badge-info">
-            Made by ChenXeed
-          </a>
+        <div className="row mt-3">
+          <div className="col text-center h4">
+            <a href="https://chenxeed.com" className="badge badge-info">
+              Made by ChenXeed
+            </a>
+          </div>
         </div>
       </div>
     </div>

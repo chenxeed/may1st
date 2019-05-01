@@ -57,7 +57,6 @@ $animation-duration: 3s;
   top: 10%;
   transition: all 0.5s;
   box-shadow: 5px 5px 10px #626262;
-  overflow: hidden;
 
   &.open {
     animation: zoom-letter $animation-duration forwards;
@@ -106,7 +105,7 @@ $animation-duration: 3s;
 
     .recipient {
       position: absolute;
-      bottom: 30px;
+      top: 30px;
       right: 50px;
 
       .badge {
@@ -135,6 +134,7 @@ $animation-duration: 3s;
     background-size: cover;
     z-index: 1;
     transition: all 2s;
+    overflow: hidden;
   }
 
   &.open .letter {
@@ -142,6 +142,7 @@ $animation-duration: 3s;
     width: 100%;
     height: 100%;
     left: 0;
+    overflow: auto;
   }
 }
 
@@ -151,26 +152,22 @@ $animation-duration: 3s;
 @keyframes zoom-letter {
   30% {
     top: 25%;
-    overflow: visible;
   }
   50% {
     width: 80%;
     height: 80%;
     top: 25%;
-    overflow: visible;
   }
   80% {
     width: 100%;
     height: 100%;
     top: 0;
-    overflow: visible;
   }
 
   100% {
     width: 100%;
     height: 100%;
     top: 0;
-    overflow: auto;
   }
 }
 
