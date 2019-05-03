@@ -12,6 +12,7 @@ class Invitation extends React.Component {
     super(props)
 
     this.state = {
+      showTsum2: false,
       showPhotoPreview: false
     }
   }
@@ -38,6 +39,13 @@ class Invitation extends React.Component {
     return animation[randomIndex]
   }
 
+  componentDidMount () {
+    this.setState({
+      ...this.state,
+      showTsum2: true
+    })
+  }
+
   render () {
     return <div className="container-fluid invitation-wrapper pt-3 pb-3">
       <div className="container">
@@ -48,8 +56,10 @@ class Invitation extends React.Component {
             <div>
               <img className="w-100" src="/static/turn-to-1.png" />
               <div className="tsum2 row">
-              { this.tsum2s.map((tsum2) => {
-                return <div className={`col h-100 animated infinite ${this.randomAnimation()}`}>
+              { this.state.showTsum2 && this.tsum2s.map((tsum2) => {
+                return <div
+                  key={tsum2}
+                  className={`col h-100 animated infinite ${this.randomAnimation()}`}>
                   <img src={`/static/tsum2-${tsum2}.png`} />
                 </div>
               })}
