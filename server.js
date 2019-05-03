@@ -46,14 +46,21 @@ app
   .then(() => {
     const server = express()
 
+    server.get('/', async (req, res) => {
+      const actualPage = '/unauthorized'
+      app.render(req, res, actualPage)
+    })
+
     server.get('/:passcode', async (req, res) => {
       const row = await getListRow()
       const recipientDetail = getNameByPasscode(row, req.params.passcode)
       if (recipientDetail) {
+        const actualPage = '/index'
         const queryParams = { recipient: recipientDetail.name }
-        app.render(req, res, '/index', queryParams)  
+        app.render(req, res, actualPage, queryParams)  
       } else {
-        app.render(req, res, '/unauthorized')
+        const actualPage = '/unauthorized'
+        app.render(req, res, actualPage)
       }
     })
 
