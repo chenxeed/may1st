@@ -33,8 +33,8 @@ function getNameByPasscode (rows, passcode) {
   const row = rows.find(row => row[2] === passcode)
   if (row) {
     return {
-      title: row[0],
-      name: row[1]
+      name: row[0],
+      childName: row[1]
     }
   } else {
     return null
@@ -56,7 +56,10 @@ app
       const recipientDetail = getNameByPasscode(row, req.params.passcode)
       if (recipientDetail) {
         const actualPage = '/index'
-        const queryParams = { recipient: recipientDetail.name }
+        const queryParams = {
+          recipient: recipientDetail.name,
+          children: recipientDetail.childName
+        }
         app.render(req, res, actualPage, queryParams)  
       } else {
         const actualPage = '/unauthorized'
