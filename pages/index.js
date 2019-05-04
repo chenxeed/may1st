@@ -8,19 +8,38 @@ class Index extends React.Component {
 
   constructor ({router}) {
     super()
+    const recipient = router.query.recipient
+    const children = router.query.children
     this.state = {
-      recipient: router.query.recipient
+      recipient,
+      children
     }
+  }
+
+  invitation () {
+
+    return <Invitation
+      recipient={ this.state.recipient }
+      children={ this.state.children }
+    />
+  }
+
+  get invitationName () {
+    return <div>
+      {this.state.recipient}
+      <br/>
+      {this.state.children && `with ${this.state.children}`}
+    </div>
   }
 
   render () {
     return (
       <LayoutMain>
         <Envelope
-          letter={<Invitation/>}
-          recipient={this.state.recipient}
+          letter={this.invitation()}
+          recipient={this.invitationName}
           frontImage="/static/tsum2.png"
-          frontImage="/static/tsum2.png"
+          buttonImage="/static/tsum2-cinderella.png"
           />
       </LayoutMain>
     )

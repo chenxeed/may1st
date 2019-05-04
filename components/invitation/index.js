@@ -1,10 +1,19 @@
 import React from 'react'
 import ReactSwipe from 'react-swipe'
+import { shuffle } from '../../helper/'
 import './style.scss'
 
 class Invitation extends React.Component {
 
   photos = ['may1.jpeg', 'may2.jpeg', 'may3.jpeg', 'may4.jpeg']
+  animation = [
+    'bounce',
+    'rubberBand',
+    'shake',
+    'wobble',
+    'tada',
+    'swing'
+  ]
   tsum2s = ['eeyore', 'daisy', 'tigger', 'stitch', 'cinderella', 'mickey']
   reactSwipeEl = null
 
@@ -12,6 +21,8 @@ class Invitation extends React.Component {
     super(props)
 
     this.state = {
+      recipient: props.recipient,
+      children: props.children,
       showTsum2: false,
       showPhotoPreview: false
     }
@@ -22,21 +33,6 @@ class Invitation extends React.Component {
       ...this.state,
       showPhotoPreview: visible
     })
-  }
-
-
-
-  randomAnimation () {
-    const animation = [
-      'bounce',
-      'rubberBand',
-      'shake',
-      'wobble',
-      'tada',
-      'swing'
-    ]
-    const randomIndex = Math.round(Math.random()*animation.length)
-    return animation[randomIndex]
   }
 
   componentDidMount () {
@@ -50,21 +46,25 @@ class Invitation extends React.Component {
     return <div className="container-fluid invitation-wrapper pt-3 pb-3">
       <div className="container">
         <div className="row intro">
-          <div className="col-sm-4 m-auto text-center">
-            <h4>You are invited</h4>
+          <div className="col-lg-4 m-auto text-center">
+            <h2>Hello {this.state.recipient}, you are invited!</h2>
             <h1>Maydelyn is Turning</h1>
-            <div>
-              <img className="w-100" src="/static/turn-to-1.png" />
-              <div className="tsum2 row">
-              { this.state.showTsum2 && this.tsum2s.map((tsum2) => {
+            <div className="turn-to-1">
+              <img className="mw-100" src="/static/turn-to-1.png" />
+              <div className="tsum2s row">
+              { this.state.showTsum2 && shuffle(this.tsum2s).map((tsum2, idx) => {
                 return <div
                   key={tsum2}
-                  className={`col h-100 animated infinite ${this.randomAnimation()}`}>
+                  className={`tsum2 col h-100 animated infinite ${this.animation[idx % this.animation.length]}`}
+                  style={{top: `${(-50 + 50 * Math.sin(Math.PI * (idx+0.5) / this.tsum2s.length))}%`}}>
                   <img src={`/static/tsum2-${tsum2}.png`} />
                 </div>
               })}
               </div>
             </div>
+            {this.state.children && 
+            <h2>Bring {this.state.children} too to have fun!</h2>
+            }
           </div>
         </div>
         <div className="row detail">
