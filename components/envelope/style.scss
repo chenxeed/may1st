@@ -1,4 +1,4 @@
-$animation-duration: 3s;
+$animation-duration: 5s;
 
 /* entire container, keeps perspective */
 .flip-container {
@@ -70,7 +70,7 @@ $animation-duration: 3s;
     width: 100%;
     transition: transform 0.5s;
     transform-origin: center top;
-    z-index: 3;
+    z-index: 4;
     cursor: pointer;
 
     .flip-paper {
@@ -118,7 +118,13 @@ $animation-duration: 3s;
     width: 100%;
     background: rgb(208,191,88);
     background: linear-gradient(90deg, rgba(208,191,88,1) 0%, rgba(203,171,19,1) 35%, rgba(255,241,0,1) 100%);
-    z-index: 3;
+    z-index: 2;
+    cursor: pointer;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: scale(1.01)
+    }
 
     .recipient {
       display: flex;
@@ -148,6 +154,15 @@ $animation-duration: 3s;
     background: rgb(208,191,88);
     background: linear-gradient(90deg, rgba(208,191,88,1) 0%, rgba(203,171,19,1) 35%, rgba(255,241,0,1) 100%);
     z-index: 2;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: scale(1.01)
+    }
+  }
+
+  &.open .cover-back {
+    animation: open-cover-back $animation-duration forwards;
   }
 
   .letter {
@@ -200,9 +215,20 @@ $animation-duration: 3s;
 @keyframes open-flip {
   20% {
     transform: rotateX(180deg);
+    z-index: 2;
   }
   100% {
     transform: rotateX(0deg);
+    z-index: 4;
+  }
+}
+
+@keyframes open-cover-back {
+  20% {
+    z-index: 4;
+  }
+  100% {
+    z-index: 2;
   }
 }
 
@@ -211,9 +237,12 @@ $animation-duration: 3s;
     top: 0;
     z-index: 2;
   }
+  31% {
+    z-index: 3;
+  }
   50% {
     top: -250%;
-    z-index: 2;
+    z-index: 4;
   }
   80% {
     top: 0;

@@ -165,8 +165,8 @@ class Invitation extends React.Component {
           </div>
         </div>
         }
-        <div className="row">
-          <div className="col text-center">
+        <div className="row justify-content-center">
+          <div className="col-sm-8 text-center">
             <h3>Dear {this.state.recipient},</h3>
             {this.state.canAttend === null
             ? this.attendForm()
