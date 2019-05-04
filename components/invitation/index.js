@@ -7,7 +7,6 @@ import './style.scss'
 class Invitation extends React.Component {
 
   photos = [
-    'may5.jpeg',
     'may6.jpeg',
     'may4.jpeg',
     'may3.jpeg',
@@ -33,7 +32,9 @@ class Invitation extends React.Component {
       recipient: props.recipient,
       children: props.children,
       showTsum2: false,
-      showPhotoPreview: false
+      showPhotoPreview: false,
+      canAttend: null,
+      submittingAttend: false
     }
   }
 
@@ -53,12 +54,42 @@ class Invitation extends React.Component {
 
   confirmAttend = canAttend => {
     const passcode = this.state.passcode
+    this.setState({
+      ...this.state,
+      submittingAttend: true
+    })
     axios.post('/confirm', {
       canAttend,
       passcode
     }).then((response) => {
-      console.log('can can!', response)
+      this.setState({
+        ...this.state,
+        canAttend,
+        submittingAttend: false
+      })
     })
+  }
+
+  attendForm () {
+    const isSubmitting = this.state.submittingAttend
+    const disabled = isSubmitting ? 'disabled' : ''
+    const message = isSubmitting
+    ? 'Confirming, please wait...'
+    : 'Would you be able to attend my birthday party?'
+    return <div>
+      <p className="h5">{message}</p>
+      <button onClick={() => this.confirmAttend(true)} className={"btn btn-block btn-success"} disabled={disabled}>Yes I Can!</button>
+      {' '}
+      <button onClick={() => this.confirmAttend(false)} className={"btn btn-block btn-secondary"} disabled={disabled}>Sorry, I can't...</button>
+    </div>
+  }
+
+  attendConfirmed () {
+    const msg = this.state.canAttend ? 'See you soon!' : 'So sad you cannot make it..'
+    return <div className="attendance">
+      <p className="h5">Thank you for confirming! {msg}</p>
+      {this.state.canAttend && <img src='/static/may3.jpeg' />}
+    </div>
   }
 
   render () {
@@ -137,10 +168,9 @@ class Invitation extends React.Component {
         <div className="row">
           <div className="col text-center">
             <h3>Dear {this.state.recipient},</h3>
-            <p className="h5">Would you be able to attend my birthday party?</p>
-            <button onClick={() => this.confirmAttend(true)} className="btn btn-block btn-success">Yes I Can!</button>
-            {' '}
-            <button onClick={() => this.confirmAttend(false)} className="btn btn-block btn-secondary">Sorry, I can't...</button>
+            {this.state.canAttend === null
+            ? this.attendForm()
+            : this.attendConfirmed()}
           </div>
         </div>
         <div className="row mt-3">
