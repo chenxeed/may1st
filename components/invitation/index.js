@@ -5,7 +5,14 @@ import './style.scss'
 
 class Invitation extends React.Component {
 
-  photos = ['may1.jpeg', 'may2.jpeg', 'may3.jpeg', 'may4.jpeg']
+  photos = [
+    'may5.jpeg',
+    'may6.jpeg',
+    'may4.jpeg',
+    'may3.jpeg',
+    'may2.jpeg',
+    'may1.jpeg',
+  ]
   animation = [
     'bounce',
     'rubberBand',
@@ -46,9 +53,8 @@ class Invitation extends React.Component {
     return <div className="container-fluid invitation-wrapper pt-3 pb-3">
       <div className="container">
         <div className="row intro">
-          <div className="col-lg-4 m-auto text-center">
-            <h2>Hello {this.state.recipient}, you are invited!</h2>
-            <h1>Maydelyn is Turning</h1>
+          <div className="col-md-6 m-auto text-center">
+            <h2>You are invited to Maydelyn's party!</h2>
             <div className="turn-to-1">
               <img className="mw-100" src="/static/turn-to-1.png" />
               <div className="tsum2s row">
@@ -67,21 +73,13 @@ class Invitation extends React.Component {
             }
           </div>
         </div>
-        <div className="row detail">
-          <div className="col-sm-4 ml-auto text-center">
+        <div className="row detail justify-content-center align-items-center pt-5">
+          <div className="col-6 text-center">
             <p className="lead">
-              <span className="h2 font-weight-bold">May 26th 3PM</span>
-            </p>
-            
-          </div>
-          <div className="col-sm-4 mr-auto text-center">
-            <p className="h2 font-weight-bold">
-              Bakmi GM Puri Mall, Jakarta
+              <span className="h3 font-weight-bold">May 26th 3PM, @ Bakmi GM Puri Mall Jakarta</span>
             </p>
           </div>
-        </div>
-        <div className="row justify-content-center">
-          <div className="col-sm-4 w-50 mb-5 photos" onClick={() => this.togglePhotoPreview(true) }>
+          <div className="col-6 photos" onClick={() => this.togglePhotoPreview(true) }>
             { this.photos.map((name, idx) => {
               return <img
                 key={name}
@@ -125,16 +123,12 @@ class Invitation extends React.Component {
         </div>
         }
         <div className="row">
-          <div className="col">
-            <div className="card text-center">
-              <div className="card-body">
-                <h5 className="card-title">RSVP</h5>
-                <p className="card-text">Would you be able to attend my birthday party?</p>
-                <a href="#" className="btn btn-success">Yes</a>
-                {' '}
-                <a href="#" className="btn btn-secondary">No</a>
-              </div>
-            </div>
+          <div className="col text-center">
+            <h3>Dear {this.state.recipient},</h3>
+            <p>Would you be able to attend my birthday party?</p>
+            <a href="#" className="btn btn-block btn-success">Yes I Can!</a>
+            {' '}
+            <a href="#" className="btn btn-block btn-secondary">Sorry, I can't...</a>
           </div>
         </div>
         <div className="row mt-3">
