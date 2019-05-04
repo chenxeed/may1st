@@ -209,6 +209,7 @@ $animation-duration: 3s;
 @keyframes take-out-letter {
   30% {
     top: 0;
+    z-index: 2;
   }
   50% {
     top: -250%;

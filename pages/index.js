@@ -8,11 +8,13 @@ class Index extends React.Component {
 
   constructor ({router}) {
     super()
+    const passcode = router.query.passcode
     const recipient = router.query.recipient
     const children = router.query.children
     this.state = {
       recipient,
-      children
+      children,
+      passcode
     }
   }
 
@@ -21,6 +23,7 @@ class Index extends React.Component {
     return <Invitation
       recipient={ this.state.recipient }
       children={ this.state.children }
+      passcode={ this.state.passcode }
     />
   }
 

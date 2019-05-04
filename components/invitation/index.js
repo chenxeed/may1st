@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactSwipe from 'react-swipe'
 import { shuffle } from '../../helper/'
+import axios from 'axios'
 import './style.scss'
 
 class Invitation extends React.Component {
@@ -28,6 +29,7 @@ class Invitation extends React.Component {
     super(props)
 
     this.state = {
+      passcode: props.passcode,
       recipient: props.recipient,
       children: props.children,
       showTsum2: false,
@@ -46,6 +48,16 @@ class Invitation extends React.Component {
     this.setState({
       ...this.state,
       showTsum2: true
+    })
+  }
+
+  confirmAttend = canAttend => {
+    const passcode = this.state.passcode
+    axios.post('/confirm', {
+      canAttend,
+      passcode
+    }).then((response) => {
+      console.log('can can!', response)
     })
   }
 
@@ -92,7 +104,7 @@ class Invitation extends React.Component {
         <div className="container-fluid photo-preview">
           <button
             type="button"
-            className="btn btn-dark close-button"
+            className="btn btn-dark btn-lg close-button"
             onClick={() => this.togglePhotoPreview(false)}>Close</button>
           <div className="container preview-container">
             <ReactSwipe
@@ -125,10 +137,10 @@ class Invitation extends React.Component {
         <div className="row">
           <div className="col text-center">
             <h3>Dear {this.state.recipient},</h3>
-            <p>Would you be able to attend my birthday party?</p>
-            <a href="#" className="btn btn-block btn-success">Yes I Can!</a>
+            <p className="h5">Would you be able to attend my birthday party?</p>
+            <button onClick={() => this.confirmAttend(true)} className="btn btn-block btn-success">Yes I Can!</button>
             {' '}
-            <a href="#" className="btn btn-block btn-secondary">Sorry, I can't...</a>
+            <button onClick={() => this.confirmAttend(false)} className="btn btn-block btn-secondary">Sorry, I can't...</button>
           </div>
         </div>
         <div className="row mt-3">
