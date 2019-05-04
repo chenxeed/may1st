@@ -49,7 +49,12 @@ class Envelope extends React.Component {
               <div className="letter">
                 {this.props.letter}
               </div>
-              <div className="flip" onClick={this.openLetter}></div>
+              <div className="flip" onClick={this.openLetter}>
+                <div className="flip-paper"></div>
+                <div className="flip-image text-center">
+                  <img src={this.props.buttonImage}/>
+                </div>
+              </div>
               <div className="cover-back"></div>
             </div>
           </div>
