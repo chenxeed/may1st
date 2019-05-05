@@ -6,7 +6,7 @@ class Envelope extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      openEnvelope: false
+      openEnvelopeStatus: null
     }
   }
 
@@ -16,16 +16,43 @@ class Envelope extends React.Component {
     }
   }
 
-  openLetter = e => {
+  openLetter = async e => {
     e.stopPropagation()
+    const transitionDuration = 1000
+    // Handle the envelope opening status similarly like
+    // the provided styles in the CSS. Check the css
+    // for more detail.
     this.setState({
       ...this.state,
-      openEnvelope: true
+      openEnvelopeStatus: 'open-cover'
+    })
+    await new Promise(res => setTimeout(res, transitionDuration))
+    this.setState({
+      ...this.state,
+      openEnvelopeStatus: 'take-out-letter'
+    })
+    await new Promise(res => setTimeout(res, transitionDuration))
+    this.setState({
+      ...this.state,
+      openEnvelopeStatus: 'show-letter'
     })
   }
 
   get envelopeClass () {
-    return `envelope ${this.state.openEnvelope ? 'open' : ''}`
+    switch(this.state.openEnvelopeStatus) {
+      case 'open-cover': {
+        return `envelope open-cover`
+      }
+      case 'take-out-letter': {
+        return `envelope open-cover take-out-letter`
+      }
+      case 'show-letter': {
+        return `envelope show-letter`
+      }
+      default: {
+        return 'envelope'
+      }
+    }
   }
 
   render () {
