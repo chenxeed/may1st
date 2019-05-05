@@ -55,7 +55,9 @@ $transition-duration: 1.5s;
   width: 80%;
   height: 80%;
   top: 10%;
-  transition: all $transition-duration;
+  transform: translate3d(0px,0px,0px);
+  transition-property: width, height, top;
+  transition-duration: $transition-duration;
   box-shadow: 5px 5px 10px #626262;
 
   .flip {
@@ -64,6 +66,7 @@ $transition-duration: 1.5s;
     left: 0;
     height: 30%;
     width: 100%;
+    transform: translate3d(0px,0px,0px);
     transition: transform $transition-duration;
     transform-origin: center top;
     z-index: 4;
@@ -148,7 +151,7 @@ $transition-duration: 1.5s;
     transition: transform 0.5s;
 
     &:hover {
-      transform: scale(1.01)
+      transform: scale(1.01) translate3d(0px,0px,0px);
     }
   }
 
@@ -161,6 +164,7 @@ $transition-duration: 1.5s;
     background: url('/static/paper_fibers.png');
     background-size: cover;
     z-index: 1;
+    transform: translate3d(0px,0px,0px);
     transition-property: top, left, width, height;
     transition-duration: $transition-duration;
     overflow: hidden;
@@ -172,7 +176,7 @@ $transition-duration: 1.5s;
   // show-letter : animate when the letter is out and showing to the user
   &.open-cover {
     .flip {
-      transform: rotateX(180deg);
+      transform: rotateX(180deg) translate3d(0px,0px,0px);
     }
   }
 

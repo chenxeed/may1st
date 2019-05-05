@@ -34,6 +34,11 @@ class Envelope extends React.Component {
     await new Promise(res => setTimeout(res, transitionDuration))
     this.setState({
       ...this.state,
+      openEnvelopeStatus: 'close-cover'
+    })
+    await new Promise(res => setTimeout(res, transitionDuration))
+    this.setState({
+      ...this.state,
       openEnvelopeStatus: 'show-letter'
     })
   }
@@ -45,6 +50,9 @@ class Envelope extends React.Component {
       }
       case 'take-out-letter': {
         return `envelope open-cover take-out-letter`
+      }
+      case 'close-cover': {
+        return `envelope take-out-letter`
       }
       case 'show-letter': {
         return `envelope show-letter`
