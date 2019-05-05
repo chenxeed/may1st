@@ -55,7 +55,7 @@ $transition-duration: 1.5s;
   width: 80%;
   height: 80%;
   top: 10%;
-  transform: translate3d(0px,0px,0px);
+  transform: translate3d(0,0,0);
   transition-property: width, height, top;
   transition-duration: $transition-duration;
   box-shadow: 5px 5px 10px #626262;
@@ -66,7 +66,7 @@ $transition-duration: 1.5s;
     left: 0;
     height: 30%;
     width: 100%;
-    transform: translate3d(0px,0px,0px);
+    transform: translate3d(0,0,0);
     transition: transform $transition-duration;
     transform-origin: center top;
     z-index: 4;
@@ -87,17 +87,16 @@ $transition-duration: 1.5s;
       top: 0;
       height: 100%;
       width: 100%;
-      transition: transform 0.2s;
-
-      &:hover {
-        transform: scale(1.2)
-      }
 
       img {
         position: relative;
         top: 50%;
         height: 100%;
         filter: drop-shadow(0px 0px 5px #000);
+        transition: height 0.2s;
+      }
+      &:hover img {
+        height: 105%;
       }
     }
   }
@@ -110,15 +109,12 @@ $transition-duration: 1.5s;
     left: 0;
     height: 100%;
     width: 100%;
+    transform: translate3d(0,0,0);
     background: rgb(208,191,88);
     background: linear-gradient(90deg, rgba(208,191,88,1) 0%, rgba(203,171,19,1) 35%, rgba(255,241,0,1) 100%);
     z-index: 2;
     cursor: pointer;
     transition: transform 0.5s;
-
-    &:hover {
-      transform: scale(1.01)
-    }
 
     .recipient {
       display: flex;
@@ -145,14 +141,11 @@ $transition-duration: 1.5s;
     clip-path: polygon(0 0, 0px 0px, 0px 100%, 100% 100%, 100% 0, 50% 30%);
     height: 100%;
     width: 100%;
+    transform: translate3d(0,0,0);
     background: rgb(208,191,88);
     background: linear-gradient(90deg, rgba(208,191,88,1) 0%, rgba(203,171,19,1) 35%, rgba(255,241,0,1) 100%);
     z-index: 2;
     transition: transform 0.5s;
-
-    &:hover {
-      transform: scale(1.01) translate3d(0px,0px,0px);
-    }
   }
 
   .letter {
@@ -164,7 +157,7 @@ $transition-duration: 1.5s;
     background: url('/static/paper_fibers.png');
     background-size: cover;
     z-index: 1;
-    transform: translate3d(0px,0px,0px);
+    transform: translate3d(0,0,0);
     transition-property: top, left, width, height;
     transition-duration: $transition-duration;
     overflow: hidden;
@@ -176,7 +169,7 @@ $transition-duration: 1.5s;
   // show-letter : animate when the letter is out and showing to the user
   &.open-cover {
     .flip {
-      transform: rotateX(180deg) translate3d(0px,0px,0px);
+      transform: rotateX(180deg) translate3d(0,0,0);
     }
   }
 
