@@ -75,6 +75,11 @@
       margin: auto;
       position: relative;
 
+      .carousel > div {
+        display: flex;
+        align-items: center;
+      }
+
       div.photo-wrapper {
         img {
           max-height: 100%;

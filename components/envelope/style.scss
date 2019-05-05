@@ -21,7 +21,7 @@ $transition-duration: 1.5s;
 
 	/* flip the pane when hovered */
 	&.hover .flipper {
-		transform: rotateY(180deg);
+		transform: rotateY(180deg) translate3d(0,0,0);
   }
 
   .front, .back {

@@ -7,10 +7,14 @@ import './style.scss'
 class Invitation extends React.Component {
 
   photos = [
+    'may13.jpg',
     'may6.jpeg',
+    'may12.jpg',
     'may4.jpeg',
     'may3.jpeg',
+    'may10.jpg',
     'may2.jpeg',
+    'may11.jpg',
     'may1.jpeg',
   ]
   animation = [
@@ -88,7 +92,7 @@ class Invitation extends React.Component {
     const msg = this.state.canAttend ? 'See you soon!' : 'So sad you cannot make it..'
     return <div className="attendance">
       <p className="h5">Thank you for confirming! {msg}</p>
-      {this.state.canAttend && <img src='/static/may3.jpeg' />}
+      {this.state.canAttend && <img className="bounceIn" src='/static/may3.jpeg' />}
     </div>
   }
 
