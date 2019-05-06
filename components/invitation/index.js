@@ -135,6 +135,21 @@ class Invitation extends React.Component {
             })}
           </div>
         </div>
+        <div className="row justify-content-center">
+          <div className="col-sm-8 text-center">
+            <h3>Dear {this.state.recipient},</h3>
+            {this.state.canAttend === null
+            ? this.attendForm()
+            : this.attendConfirmed()}
+          </div>
+        </div>
+        <div className="row mt-3">
+          <div className="col text-center h4">
+            <a href="https://chenxeed.com" className="badge badge-info">
+              Made by ChenXeed
+            </a>
+          </div>
+        </div>
         { this.state.showPhotoPreview &&
         <div className="container-fluid photo-preview">
           <button
@@ -169,21 +184,6 @@ class Invitation extends React.Component {
           </div>
         </div>
         }
-        <div className="row justify-content-center">
-          <div className="col-sm-8 text-center">
-            <h3>Dear {this.state.recipient},</h3>
-            {this.state.canAttend === null
-            ? this.attendForm()
-            : this.attendConfirmed()}
-          </div>
-        </div>
-        <div className="row mt-3">
-          <div className="col text-center h4">
-            <a href="https://chenxeed.com" className="badge badge-info">
-              Made by ChenXeed
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   }
