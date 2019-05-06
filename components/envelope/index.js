@@ -87,10 +87,10 @@ class Envelope extends React.Component {
                   <img src={this.props.buttonImage}/>
                 </div>
               </div>
-              <div className="cover-back" onClick={this.openLetter}></div>
               <div className="letter">
                 {this.props.letter}
               </div>
+              <div className="cover-back" onClick={this.openLetter}></div>
             </div>
           </div>
         </div>

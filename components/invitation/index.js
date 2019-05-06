@@ -108,7 +108,7 @@ class Invitation extends React.Component {
               { this.state.showTsum2 && shuffle(this.tsum2s).map((tsum2, idx) => {
                 return <div
                   key={tsum2}
-                  className={`tsum2 col h-100 animated infinite ${this.animation[idx % this.animation.length]}`}
+                  className={`tsum2 col animated infinite ${this.animation[idx % this.animation.length]}`}
                   style={{top: `${(-50 + 50 * Math.sin(Math.PI * (idx+0.5) / this.tsum2s.length))}%`}}>
                   <img src={`/static/tsum2-${tsum2}.png`} />
                 </div>
