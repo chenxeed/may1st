@@ -58,20 +58,23 @@ class Invitation extends React.Component {
 
   confirmAttend = canAttend => {
     const passcode = this.state.passcode
+
     this.setState({
       ...this.state,
-      submittingAttend: true
+      canAttend
     })
-    axios.post('/confirm', {
-      canAttend,
-      passcode
-    }).then((response) => {
-      this.setState({
-        ...this.state,
-        canAttend,
-        submittingAttend: false
-      })
-    })
+
+    // Since google API is not available anymore, we will just skip this part
+    // axios.post('/confirm', {
+    //   canAttend,
+    //   passcode
+    // }).then((response) => {
+    //   this.setState({
+    //     ...this.state,
+    //     canAttend,
+    //     submittingAttend: false
+    //   })
+    // })
   }
 
   attendForm () {
