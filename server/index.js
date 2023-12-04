@@ -5,10 +5,13 @@ const bodyParser = require('body-parser')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
-const {google} = require('googleapis')
-const run = require('./google-auth')
 
-const spreadsheetId = '1H1WJOgiMzhXAXmPv_MsOsg_RjAa3_iWktsWT8xYNYaY'
+// The google sheet API is no longer active, so we'll just mock the data
+
+// const {google} = require('googleapis')
+// const run = require('./google-auth')
+
+// const spreadsheetId = '1H1WJOgiMzhXAXmPv_MsOsg_RjAa3_iWktsWT8xYNYaY'
 
 async function getListRow () {
   return new Promise((resolve, reject) => {
@@ -72,15 +75,18 @@ app
     const server = express()
     server.use(bodyParser.json())
 
-    server.get('/', async (req, res) => {
-      const actualPage = '/unauthorized'
-      app.render(req, res, actualPage)
-    })
+    // server.get('/', async (req, res) => {
+    //   const actualPage = '/unauthorized'
+    //   app.render(req, res, actualPage)
+    // })
 
-    server.get('/:passcode', async (req, res) => {
-      const row = await getListRow()
+    server.get('/', async (req, res) => {
+      // const row = await getListRow()
       const passcode = req.params.passcode
-      const recipientDetail = getDataByPasscode(row, passcode)
+      const recipientDetail = {
+        name: 'Albert',
+        childName: 'May',
+      }
       if (recipientDetail) {
         const actualPage = '/index'
         const queryParams = {
@@ -96,26 +102,30 @@ app
     })
 
     server.post('/confirm', async (req, res) => {
-      const {passcode, canAttend} = req.body
-      const confirm = canAttend ? 'Yes' : 'No'
-      // find the row based on the given passcode
-      const row = await getListRow()
-      const recipientDetail = getDataByPasscode(row, passcode)
-      if (recipientDetail) {
-        // add two more because row index start from one,
-        // and there's the header
-        const rowIndex = recipientDetail.index + 2
-        const range = `E${rowIndex}`
-        await updateRow(range, confirm)
-        res.json({
-          message: 'Success'
-        })
-      } else {
-        res.status(404)
-        res.json({
-          message: 'Failed, recipient not found'
-        })
-      }
+      res.json({
+        message: 'Success'
+      })
+
+      // const {passcode, canAttend} = req.body
+      // const confirm = canAttend ? 'Yes' : 'No'
+      // // find the row based on the given passcode
+      // const row = await getListRow()
+      // const recipientDetail = getDataByPasscode(row, passcode)
+      // if (recipientDetail) {
+      //   // add two more because row index start from one,
+      //   // and there's the header
+      //   const rowIndex = recipientDetail.index + 2
+      //   const range = `E${rowIndex}`
+      //   await updateRow(range, confirm)
+      //   res.json({
+      //     message: 'Success'
+      //   })
+      // } else {
+      //   res.status(404)
+      //   res.json({
+      //     message: 'Failed, recipient not found'
+      //   })
+      // }
     })
 
     server.get('*', (req, res) => {
