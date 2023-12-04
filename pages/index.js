@@ -8,9 +8,12 @@ class Index extends React.Component {
 
   constructor ({router}) {
     super()
-    const passcode = router.query.passcode
-    const recipient = router.query.recipient
-    const children = router.query.children
+    // const passcode = router.query.passcode
+    // const recipient = router.query.recipient
+    // const children = router.query.children
+    const passcode = '123456'
+    const recipient = 'Albert'
+    const children = 'May'
     this.state = {
       recipient,
       children,

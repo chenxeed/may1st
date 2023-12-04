@@ -145,7 +145,7 @@ class Invitation extends React.Component {
         </div>
         <div className="row mt-3">
           <div className="col text-center h4">
-            <a href="https://chenxeed.com" className="badge badge-info">
+            <a href="https://chenxeed.my.id" className="badge badge-info">
               Made by ChenXeed
             </a>
           </div>
